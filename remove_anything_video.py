@@ -354,7 +354,7 @@ if __name__ == "__main__":
 
     # load raw video or raw frames
     if Path(video_raw_p).exists():
-        all_frame = iio.mimread(video_raw_p)
+        all_frame = iio.mimread(video_raw_p, memtest=False)
         fps = imageio.v3.immeta(video_raw_p, exclude_applied=False)["fps"]
 
         # tmp frames
