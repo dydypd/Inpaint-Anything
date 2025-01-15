@@ -91,7 +91,7 @@ class RemoveAnythingVideo(nn.Module):
             args,
             tracker_target="ostrack",
             segmentor_target="sam",
-            inpainter_target="sttn",
+            inpainter_target="lama",
     ):
         super().__init__()
         tracker_build_args = {
