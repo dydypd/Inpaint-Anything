@@ -30,7 +30,7 @@ def setup_args(parser):
     )
     parser.add_argument(
         "--coords_type", type=str, required=True,
-        default="key_in", choices=["click", "key_in"], 
+        default="key_in", choices=["click", "key_in"],
         help="The way to select coords",
     )
     parser.add_argument(
@@ -87,7 +87,7 @@ def setup_args(parser):
 
 class RemoveAnythingVideo(nn.Module):
     def __init__(
-            self, 
+            self,
             args,
             tracker_target="ostrack",
             segmentor_target="sam",
@@ -130,7 +130,7 @@ class RemoveAnythingVideo(nn.Module):
         assert target == "sam", "Only support sam now."
         return build_sam_model(**kwargs)
 
-    def build_inpainter(self, target="sttn", **kwargs):
+    def build_inpainter(self, target="lama", **kwargs):
         if target == "lama":
             return build_lama_model(**kwargs)
         elif target == "sttn":
@@ -223,7 +223,7 @@ class RemoveAnythingVideo(nn.Module):
             key_mask = key_masks[key_frame_mask_idx]
         else:
             key_mask = self.mask_selection(key_masks, key_scores)
-        
+
         if dilate_kernel_size is not None:
             key_mask = dilate_mask(key_mask, dilate_kernel_size)
 
@@ -372,7 +372,7 @@ if __name__ == "__main__":
         iio.mimwrite(video_raw_p, all_frame, fps=fps)
 
     frame_ps = frame_ps[:num_frames]
-    
+
     point_labels = np.array(args.point_labels)
     if args.coords_type == "click":
         point_coords = get_clicked_point(frame_ps[0])

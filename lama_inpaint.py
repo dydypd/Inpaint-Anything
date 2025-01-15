@@ -83,11 +83,11 @@ def inpaint_img_with_lama(
 
 
 def build_lama_model(        
-        config_p: str,
+        lama_config: str,
         ckpt_p: str,
         device="cuda"
 ):
-    predict_config = OmegaConf.load(config_p)
+    predict_config = OmegaConf.load(lama_config)
     predict_config.model.path = ckpt_p
     device = torch.device(device)
 
